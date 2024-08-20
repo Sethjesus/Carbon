@@ -8,12 +8,12 @@
         /* Style the flowchart area */
         #flowchart {
             width: 100%;
-            height: 800px; /* Adjusted for U-shaped layout */
             display: flex;
             justify-content: center;
             align-items: center;
             background-color: #f0f0f0;
             border: 1px solid #ddd;
+            overflow-x: auto; /* Allow horizontal scrolling on small screens */
         }
         /* Style the table */
         table {
@@ -50,11 +50,28 @@
             text-anchor: middle;
             fill: #333;
         }
+
+        /* Media query for mobile devices */
+        @media (max-width: 768px) {
+            #flowchart svg {
+                width: 100%; /* Make SVG fill the width of the container */
+                height: auto; /* Adjust height automatically */
+            }
+            .link-text {
+                font-size: 10px; /* Adjust font size for smaller screens */
+            }
+            .node text {
+                font-size: 12px; /* Adjust node text size */
+            }
+        }
     </style>
 </head>
 <body>
-    <h1>JP ESG 專業低碳管理方案 </h1>
-    <div id="flowchart"></div>
+    <div id="flowchart">
+        <svg viewBox="0 0 1200 600" preserveAspectRatio="xMidYMid meet">
+            <!-- SVG content will be dynamically filled -->
+        </svg>
+    </div>
     <table id="details">
         <thead>
             <tr>
@@ -80,9 +97,7 @@
                 {id: "社會參與", desc: "鼓勵社會各界參與並提供意見反饋。", color: "#7f7f7f", shape: "circle", x: 100, y: 400}
             ];
 
-            const svg = d3.select("#flowchart").append("svg")
-                .attr("width", 1200)  // Adjusted width for larger gaps
-                .attr("height", 600);  // Adjusted height
+            const svg = d3.select("#flowchart svg");
 
             svg.append("defs").append("marker")
                 .attr("id", "arrow")
