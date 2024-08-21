@@ -15,9 +15,9 @@
             overflow-x: auto;
         }
         table {
-            width: 100%;
+            width: 95%;
             border-collapse: collapse;
-            margin-top: 20px;
+            margin-top: 10px;
         }
         th, td {
             border: 1px solid black;
@@ -28,7 +28,7 @@
             background-color: #f2f2f2;
         }
         .node text {
-            font: 14px sans-serif;
+            font: 12px sans-serif;
         }
         .link {
             fill: none;
@@ -67,6 +67,10 @@
     <div id="flowchart">
         <svg viewBox="0 0 800 400" preserveAspectRatio="xMidYMid meet"></svg>
     </div>
+    <div id="explanation">
+        <h2>流程說明</h2>
+        <p>此流程圖展示了從企業自主碳盤查到獲得政府補助的完整過程。它涵蓋了碳盤查的各個階段，包括初步估算、深度管理平台應用及最終的可行性評估。</p>
+    </div>
     <table id="details">
         <thead>
             <tr>
@@ -92,7 +96,7 @@
                 },
                 {
                     id: "政府補助碳盤查(16+4)",
-                    desc: "113年經濟部<br>製造業低碳化及智慧化升級轉型診斷輔導<img src='https://github.com/Sethjesus/Photo/blob/main/Carbon7.jpg?raw=true' alt='圖示' width='100'><br>(含政府款16萬元，廠商自籌款4萬元)<br><a href='https://assist.nat.gov.tw/wSite/ct?xItem=253909&ctNode=232&mp=2' target='_blank'>請點下查看詳情</a><br>(可作為產發署低碳化補助申請計畫使用)<br>",
+                    desc: "113年經濟部<br>製造業低碳化及智慧化升級轉型診斷輔導<br><img src='https://github.com/Sethjesus/Photo/blob/main/Carbon7.jpg?raw=true' alt='圖示' width='100'><br>(含政府款16萬元，廠商自籌款4萬元)<br><a href='https://assist.nat.gov.tw/wSite/ct?xItem=253909&ctNode=232&mp=2' target='_blank'>請點下查看詳情</a><br>(可作為產發署低碳化補助申請計畫使用)<br>",
                     color: "#2ca02c",
                     shape: "rect",
                     x: 300,
@@ -112,7 +116,7 @@
                 },
                 {
                     id: "免費可行性評估",
-                    desc: "A. 企業低碳化可行性評估<br>產發署低碳化補助申請可行性評估<br>",
+                    desc: "A. 企業低碳化可行性評估<sub>google表表單<sub><br>產發署低碳化補助申請可行性評估<br>",
                     color: "#d62728",
                     shape: "rect",
                     x: 700,
@@ -154,6 +158,8 @@
                     .attr("y", -d.height / 2)
                     .attr("width", d.width)
                     .attr("height", d.height)
+                    .attr("rx", d.height / 2)  // Added for semi-circle effect
+                    .attr("ry", d.height / 2)
                     .style("fill", d.color);
 
                 node.append("text")
@@ -190,10 +196,10 @@
                 d3.select(this).append("text")
                     .attr("class", "link-text")
                     .attr("x", midX)
-                    .attr("y", midY + 20)
-                    .attr("dy", ".35em")
+                    .attr("y", midY + 50)
+                    .attr("dy", ".05em")
                     .attr("text-anchor", "middle")
-                    .text(["<ISO14067", "政府補助碳盤查(16+4)", "國際法規與趨勢", "免費可行性評估"][i]);
+                    .text(["ISO14067", "政府補助碳盤查(16+4)", "國際法規與趨勢", "免費可行性評估"][i]);
             });
 
             const tbody = d3.select("#details tbody");
