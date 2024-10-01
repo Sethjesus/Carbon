@@ -6,15 +6,16 @@
     <title>專業低碳管理方案流程圖及對應表格</title>
     <style>
         body {
-        background-image: url('https://github.com/Sethjesus/Photo/blob/main/sky2.jpg?raw=true');
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        font-family: Arial, sans-serif;
-        margin: 0;
-        padding: 0;
-        color: #333;
-    }
+             background-image: url('https://github.com/Sethjesus/Photo/blob/main/sky2.jpg?raw=true'); /* 換成更柔和的背景圖片 URL */
+             background-size: 60%;
+             background-position: center;
+             background-repeat: no-repeat;
+             font-family: Arial, sans-serif;
+             margin: 0;
+             padding: 0;
+             color: #333;
+            }
+
         h1 {
            text-align: center;
            margin-top: 20px;
@@ -23,30 +24,38 @@
         }
 
         #flowchart {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: rgba(255, 255, 255, 0.6); /* 半透明白色背景 */
-    border: 1px solid #ddd;
-    overflow-x: auto;
-    padding: 20px;
-}
+           width: 100%;
+           display: flex;
+           justify-content: center;
+           align-items: center;
+           background-color: rgba(255, 255, 255, 0.2); /* 半透明白色背景 */
+           border: 1px solid #ddd;
+           overflow-x: auto;
+           padding: 10px; /* 減少內邊距 */
+           height: 800px; /* 調整高度，縮小流程圖容器 */
+        }
+
+         #flowchart svg {
+           height: 100%; /* 讓SVG佔滿容器 */
+           width: 180%;
+           viewBox: "0 0 200 100"; /* 調整視圖框高度 */
+        }
+
 
 .node rect {
-    fill-opacity: 0.8; /* 讓流程圖節點的背景稍微透明 */
+    fill-opacity: 0.9; /* 讓流程圖節點的背景稍微透明 */
 }
 
 .link {
-    stroke-opacity: 0.8; /* 讓連線也稍微透明 */
+    stroke-opacity: 0.9; /* 讓連線也稍微透明 */
 }
 
-        table {
-    width: 95%;
-    border-collapse: collapse;
-    margin: 20px auto;
-    background-color: rgba(255, 255, 255, 0.8); /* 增加一點背景色使文字更突出 */
-}
+         table {
+           width: 95%;
+           border-collapse: collapse;
+           margin: 20px auto;
+           background-color: rgba(255, 255, 255, 0.9); /* 增加一點背景色使文字更突出 */
+               }
 
 th, td {
     border: 1px solid black;
@@ -62,7 +71,7 @@ th {
     font-size: 20px; /* 表頭字體稍大 */
 }
 #explanation {
-    background-color: rgba(255, 255, 255, 0.8); /* 加入一個半透明的白色背景 */
+    background-color: rgba(255, 255, 255, 0.9); /* 加入一個半透明的白色背景 */
     padding: 20px;
     margin: 20px auto;
     width: 90%; /* 控制寬度，保持一致 */
