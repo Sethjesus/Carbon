@@ -6,12 +6,15 @@
     <title>專業低碳管理方案流程圖及對應表格</title>
     <style>
         body {
-            background-color: #f4f4f4;
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            color: #333;
-        }
+        background-image: url('https://github.com/Sethjesus/Photo/blob/main/sky2.jpg?raw=true');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        color: #333;
+    }
         h1 {
            text-align: center;
            margin-top: 20px;
@@ -20,28 +23,60 @@
         }
 
         #flowchart {
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-color: #f0f0f0;
-            border: 1px solid #ddd;
-            overflow-x: auto;
-            padding: 20px;
-        }
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.6); /* 半透明白色背景 */
+    border: 1px solid #ddd;
+    overflow-x: auto;
+    padding: 20px;
+}
+
+.node rect {
+    fill-opacity: 0.8; /* 讓流程圖節點的背景稍微透明 */
+}
+
+.link {
+    stroke-opacity: 0.8; /* 讓連線也稍微透明 */
+}
+
         table {
-            width: 95%;
-            border-collapse: collapse;
-            margin: 20px auto;
-        }
-        th, td {
-            border: 1px solid black;
-            padding: 8px;
-            text-align: left;
-        }
-        th {
-            background-color: #f2f2f2;
-        }
+    width: 95%;
+    border-collapse: collapse;
+    margin: 20px auto;
+    background-color: rgba(255, 255, 255, 0.8); /* 增加一點背景色使文字更突出 */
+}
+
+th, td {
+    border: 1px solid black;
+    padding: 12px; /* 增加 padding */
+    text-align: left;
+    font-size: 18px; /* 增大字體 */
+    color: #333; /* 字體顏色保持深色 */
+}
+
+th {
+    background-color: #007bff; /* 改變表頭背景色，使對比更強烈 */
+    color: white; /* 表頭文字改成白色 */
+    font-size: 20px; /* 表頭字體稍大 */
+}
+#explanation {
+    background-color: rgba(255, 255, 255, 0.8); /* 加入一個半透明的白色背景 */
+    padding: 20px;
+    margin: 20px auto;
+    width: 90%; /* 控制寬度，保持一致 */
+    font-size: 18px; /* 增大字體 */
+    color: #333; /* 調整文字顏色為深色 */
+    line-height: 1.6; /* 增加行距 */
+    border-radius: 10px; /* 增加邊角圓滑效果 */
+}
+
+#explanation h2 {
+    font-size: 24px; /* 標題文字大小 */
+    color: #007bff; /* 標題顏色 */
+}
+
         .node text {
             font: 12px sans-serif;
         }
