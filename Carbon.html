@@ -6,118 +6,110 @@
     <title>專業低碳管理方案流程圖及對應表格</title>
     <style>
         body {
-             background-image: url('https://github.com/Sethjesus/Photo/blob/main/sky2.jpg?raw=true'); /* 換成更柔和的背景圖片 URL */
-             background-size: 50%;
-             background-position: center;
-             background-repeat: no-repeat;
-             font-family: Arial, sans-serif;
-             margin: 0;
-             padding: 0;
-             color: #333;
-            }
+            background-image: url('https://github.com/Sethjesus/Photo/blob/main/sky2.jpg?raw=true'); 
+            background-size: 100%;
+            background-position: cover;
+            background-repeat: no-repeat;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
 
         h1 {
-           text-align: center;
-           margin-top: 20px;
-           color: #007bff;
-           font-size: 48px; /* 調整這裡的字體大小，如 48px */
+            text-align: center;
+            margin-top: 20px;
+            color: #007bff;
+            font-size: 48px;
         }
+
+        #flowchart-container {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: rgba(255, 255, 255, 0.2);
+            border: 1px solid #ddd;
+            overflow-x: auto;
+            padding: 10px;
+            height: 600px;
+        }
+        
 
         #flowchart {
-           width: 100%;
-           display: flex;
-           justify-content: center;
-           align-items: center;
-           background-color: rgba(255, 255, 255, 0.2); /* 半透明白色背景 */
-           border: 1px solid #ddd;
-           overflow-x: auto;
-           padding: 10px; /* 減少內邊距 */
-           height: 800px; /* 調整高度，縮小流程圖容器 */
+            height: 100%;
+            width: 180%;
         }
 
-         #flowchart svg {
-           height: 100%; /* 讓SVG佔滿容器 */
-           width: 180%;
-           viewBox: "0 0 200 100"; /* 調整視圖框高度 */
+        .node rect {
+            fill-opacity: 0.9;
         }
 
-
-.node rect {
-    fill-opacity: 0.9; /* 讓流程圖節點的背景稍微透明 */
-}
-
-.link {
-    stroke-opacity: 0.9; /* 讓連線也稍微透明 */
-}
-
-         table {
-           width: 95%;
-           border-collapse: collapse;
-           margin: 20px auto;
-           background-color: rgba(255, 255, 255, 0.9); /* 增加一點背景色使文字更突出 */
-               }
-
-th, td {
-    border: 1px solid black;
-    padding: 12px; /* 增加 padding */
-    text-align: left;
-    font-size: 18px; /* 增大字體 */
-    color: #333; /* 字體顏色保持深色 */
-}
-
-th {
-    background-color: #007bff; /* 改變表頭背景色，使對比更強烈 */
-    color: white; /* 表頭文字改成白色 */
-    font-size: 20px; /* 表頭字體稍大 */
-}
-#explanation {
-    background-color: rgba(255, 255, 255, 0.9); /* 加入一個半透明的白色背景 */
-    padding: 20px;
-    margin: 20px auto;
-    width: 90%; /* 控制寬度，保持一致 */
-    font-size: 18px; /* 增大字體 */
-    color: #333; /* 調整文字顏色為深色 */
-    line-height: 1.6; /* 增加行距 */
-    border-radius: 10px; /* 增加邊角圓滑效果 */
-}
-
-#explanation h2 {
-    font-size: 24px; /* 標題文字大小 */
-    color: #007bff; /* 標題顏色 */
-}
-
-        .node text {
-            font: 12px sans-serif;
-        }
         .link {
-            fill: none;
             stroke: #666;
-            stroke-width: 2px;
-            marker-end: url(#arrow);
+            stroke-width: 3px;
         }
-        .arrowHead {
-            fill: #666;
+        
+        .link-background {
+            fill: rgba(255, 255, 255, 0.8); /* 半透明白色背景 */
+            stroke: none;
+            box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.5); /* 調整後的陰影語法 */
         }
-        .highlight {
-            background-color: #ffe4c4;
+
+        table {
+            width: 95%;
+            border-collapse: collapse;
+            margin: 20px auto;
+            background-color: rgba(255, 255, 255, 0.9);
         }
+
+        th, td {
+            border: 1px solid black;
+            padding: 12px;
+            text-align: left;
+            font-size: 18px;
+            color: #333;
+        }
+
+        th {
+            background-color: #007bff;
+            color: white;
+            font-size: 20px;
+        }
+
+        #explanation {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            margin: 20px auto;
+            width: 90%;
+            font-size: 18px;
+            color: #333;
+            line-height: 1.6;
+            border-radius: 10px;
+        }
+
+        #explanation h2 {
+            font-size: 24px;
+            color: #007bff;
+        }
+
         .link-text {
             font: 12px sans-serif;
             text-anchor: middle;
             fill: #333;
         }
+
         @media (max-width: 768px) {
-            #flowchart svg {
+            #flowchart {
                 width: 100%;
                 height: auto;
             }
+
             .link-text {
                 font-size: 10px;
             }
-            .node text {
-                font-size: 12px;
-            }
         }
+
         footer {
             position: relative;
             text-align: center;
@@ -126,6 +118,7 @@ th {
             color: #ffffff;
             margin-top: 30px;
         }
+
         .back-button {
             position: absolute;
             top: 10px;
@@ -140,21 +133,24 @@ th {
             text-align: center;
             transition: background-color 0.3s ease;
         }
+
         .back-button:hover {
-            background-color: #0056b3; /* 更深的藍色 */
+            background-color: #0056b3;
         }
     </style>
 </head>
 <body>
     <h1>碳盤查</h1>
-    <div id="flowchart">
-        <svg viewBox="0 0 800 400" preserveAspectRatio="xMidYMid meet"></svg>
+    <div id="flowchart-container">
+        <svg id="flowchart" viewBox="0 0 800 400" preserveAspectRatio="xMidYMid meet"></svg>
     </div>
+    
     <div id="explanation">
         <h2>流程說明</h2>
         <p>此流程圖展示了從企業自主碳盤查到獲得政府補助的完整過程。它涵蓋了碳盤查的各個階段，包括初步估算、深度管理平台應用及最終的可行性評估。</p>
     </div>
-    <table id="details">
+    
+    <table>
         <thead>
             <tr>
                 <th>項目</th>
@@ -169,64 +165,63 @@ th {
     </footer>
     <script src="https://d3js.org/d3.v7.min.js"></script>
     <script>
-        // JavaScript code for D3.js
         document.addEventListener('DOMContentLoaded', function() {
             const data = [
                 {
-                    id: "1.1 企業自主碳盤查",
-                    desc: "A. 線上免費估算工具<img src='https://github.com/Sethjesus/Photo/blob/main/Carbon1.jpg?raw=true' alt='圖示' width='100'><img src='https://github.com/Sethjesus/Photo/blob/main/Carbon2.jpg?raw=true' alt='圖示' width='100'><br>B. AI探盤查管理平台<img src='https://github.com/Sethjesus/Photo/blob/main/Carbon3.jpg?raw=true' alt='圖示' width='100'><img src='https://github.com/Sethjesus/Photo/blob/main/Carbon4.jpg?raw=true' alt='圖示' width='100'><img src='https://github.com/Sethjesus/Photo/blob/main/Carbon5.jpg?raw=true' alt='圖示' width='100'><br>C. AI碳盤查管理平台<img src='https://github.com/Sethjesus/Photo/blob/main/Carbon6.jpg?raw=true' alt='圖示' width='100'><br>(以上方案均提供一套無線能耗足跡管理工具。<br>",
-                    color: "#ff7f0e",
-                    shape: "rect",
-                    x: 100,
-                    y: 100,
-                    width: 150,
-                    height: 70
-                },
-                {
-                    id: "1.2 政府補助碳盤查(16+4)",
-                    desc: "113年經濟部<br>製造業低碳化及智慧化升級轉型診斷輔導<br><img src='https://github.com/Sethjesus/Photo/blob/main/Carbon7.jpg?raw=true' alt='圖示' width='100'><br>(含政府款16萬元，廠商自籌款4萬元)<br><a href='https://assist.nat.gov.tw/wSite/ct?xItem=253909&ctNode=232&mp=2' target='_blank'>請點下查看詳情</a><br>(可作為產發署低碳化補助申請計畫使用)<br>",
-                    color: "#2ca02c",
-                    shape: "rect",
-                    x: 300,
-                    y: 100,
-                    width: 150,
-                    height: 70
-                },
-                {
-                    id: "1.3 諮詢輔導",
+                    id: "1.1 諮詢輔導",
                     desc: "A.企業自主碳盤查諮詢輔導<br>B. 低碳化/減碳方案規劃建議 。<br>",
                     color: "#1f77b4",
                     shape: "rect",
-                    x: 500,
+                    x: 100,
                     y: 100,
-                    width: 150,
-                    height: 70
+                    width: 170,
+                    height: 90
                 },
                 {
-                    id: "1.4 免費可行性評估",
-                    desc: "A. 企業低碳化可行性評估<sub>google表表單<sub><br>產發署低碳化補助申請可行性評估<br>",
+                    id: "1.2 免費可行性評估",
+                    desc: "A. 企業低碳化可行性評估<br>產發署低碳化補助申請可行性評估<br>",
                     color: "#d62728",
                     shape: "rect",
-                    x: 700,
+                    x: 300,
                     y: 100,
-                    width: 150,
-                    height: 70
+                    width: 170,
+                    height: 90
+                },
+                {
+                    id: "1.3 企業自主碳盤查",
+                    desc: "A. 線上免費估算工具<img src='https://github.com/Sethjesus/Photo/blob/main/Carbon1.jpg?raw=true' alt='圖示' width='100'><img src='https://github.com/Sethjesus/Photo/blob/main/Carbon2.jpg?raw=true' alt='圖示' width='100'><br>B. AI探盤查管理平台<img src='https://github.com/Sethjesus/Photo/blob/main/Carbon3.jpg?raw=true' alt='圖示' width='100'><img src='https://github.com/Sethjesus/Photo/blob/main/Carbon4.jpg?raw=true' alt='圖示' width='100'><img src='https://github.com/Sethjesus/Photo/blob/main/Carbon5.jpg?raw=true' alt='圖示' width='100'><br>C. AI碳盤查管理平台<img src='https://github.com/Sethjesus/Photo/blob/main/Carbon6.jpg?raw=true' alt='圖示' width='100'><br>(以上方案均提供一套無線能耗足跡管理工具。<br>",
+                    color: "#ff7f0e",
+                    shape: "rect",
+                    x: 500,
+                    y: 100,
+                    width: 170,
+                    height: 90
+                },
+                {
+                    id: "1.4 政府補助碳盤查(16+4)",
+                    desc: "113年經濟部<br>製造業低碳化及智慧化升級轉型診斷輔導<br><img src='https://github.com/Sethjesus/Photo/blob/main/Carbon7.jpg?raw=true' alt='圖示' width='100'><br>(含政府款16萬元，廠商自籌款4萬元)<br><a href='https://assist.nat.gov.tw/wSite/ct?xItem=253909&ctNode=232&mp=2' target='_blank'>請點下查看詳情</a><br>(可作為產發署低碳化補助申請計畫使用)<br>",
+                    color: "#2ca02c",
+                    shape: "rect",
+                    x: 720,
+                    y: 100,
+                    width: 200,
+                    height: 90
                 }
             ];
 
-            const svg = d3.select("#flowchart svg");
+            const svg = d3.select("#flowchart");
 
-            svg.append("defs").append("marker")
-                .attr("id", "arrow")
-                .attr("viewBox", "0 -5 10 10")
-                .attr("refX", 5)
-                .attr("refY", 0)
-                .attr("markerWidth", 6)
-                .attr("markerHeight", 6)
-                .attr("orient", "auto")
-                .append("path")
-                .attr("d", "M0,-5L10,0L0,5")
-                .style("fill", "#666");
+               svg.append("defs").append("marker")
+                 .attr("id", "arrow")
+                 .attr("viewBox", "0 -5 10 10")
+                 .attr("refX", 10) // 調整 refX 以確保箭頭正確顯示
+                 .attr("refY", 0)
+                 .attr("markerWidth", 6)
+                 .attr("markerHeight", 6)
+                 .attr("orient", "auto")
+                 .append("path")
+                 .attr("d", "M0,-5L10,0L0,5")
+                 .style("fill", "green");  // 使用深色填充以保證可見性
 
             const nodeGroup = svg.selectAll("g.node")
                 .data(data)
@@ -246,20 +241,22 @@ th {
                     .attr("y", -d.height / 2)
                     .attr("width", d.width)
                     .attr("height", d.height)
-                    .attr("rx", d.height / 2)  // Added for semi-circle effect
-                    .attr("ry", d.height / 2)
+                    .attr("rx", 10)
+                    .attr("ry", 10)
                     .style("fill", d.color);
 
                 node.append("text")
-                    .attr("y", 5)
+                    .attr("x", 0)
+                    .attr("y", 0)
+                    .attr("dy", ".35em")
                     .attr("text-anchor", "middle")
                     .text(d.id);
             });
 
             const linkElements = svg.selectAll(".link")
-                .data(data.slice(1).map((d, i) => {
+                    .data(data.slice(1).map((d, i) => {
                     const source = data[i];
-                    const target = d;
+                    const  target = d;
 
                     const sourceX = source.x + source.width / 2 + 10;
                     const sourceY = source.y;
@@ -267,30 +264,40 @@ th {
                     const targetX = target.x - target.width / 2 - 10;
                     const targetY = target.y;
 
-                    return {sourceX, sourceY, targetX, targetY};
+                  return { sourceX, sourceY, targetX, targetY };
                 }))
                 .enter()
                 .append("g");
-
-            linkElements.append("path")
-                .attr("class", "link")
-                .attr("d", d => `M${d.sourceX},${d.sourceY} L${d.targetX},${d.targetY}`)
-                .attr("marker-end", "url(#arrow)");
+                linkElements.append("path")
+    .attr("class", "link")
+    .attr("d", d => `M${d.sourceX},${d.sourceY} L${d.targetX},${d.targetY}`)
+    .attr("marker-end", "url(#arrow)");  // 確保每條連接線應用了箭頭
 
             linkElements.each(function(d, i) {
                 const midX = (d.sourceX + d.targetX) / 2;
                 const midY = (d.sourceY + d.targetY) / 2;
 
+                const text = ["國際法規與趨勢", "政府補助碳盤查(16+4)", "AI碳盤查管理平台"][i];
+                const textWidth = text.length * 12;  // 根據每個字符長度調整寬度
+
+                d3.select(this).append("rect")
+                    .attr("class", "link-background")
+                    .attr("x", midX - textWidth / 2)  // 居中顯示
+                    .attr("y", midY + 45)
+                    .attr("width", textWidth + 20)  // 自動計算寬度
+                    .attr("height", 20)
+                    .attr("rx", 5);
+
                 d3.select(this).append("text")
                     .attr("class", "link-text")
                     .attr("x", midX)
-                    .attr("y", midY + 50)
-                    .attr("dy", ".05em")
+                    .attr("y", midY + 55)
+                    .attr("dy", ".55em")
                     .attr("text-anchor", "middle")
-                    .text([" AI碳盤查管理平台", "政府補助碳盤查(16+4)", "國際法規與趨勢", "免費可行性評估"][i]);
+                    .text(text);
             });
 
-            const tbody = d3.select("#details tbody");
+            const tbody = d3.select("tbody");
             const rows = tbody.selectAll("tr")
                 .data(data)
                 .enter()
