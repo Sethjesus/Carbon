@@ -48,10 +48,9 @@
             color: #333;
             line-height: 1.6;
             border-radius: 10px;
-            background-color: rgba(255, 255, 255, 0.8); /* 白色半透明背景 */
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 增加陰影 */
+            background-color: rgba(255, 255, 255, 0.9); /* 白色半透明背景 */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* 增加陰影 */
         }
-
 
         table {
             width: 95%;
@@ -59,19 +58,11 @@
             margin: 20px auto;
         }
 
-        th {
+        th, td {
             border: 1px solid black;
             padding: 12px;
             text-align: left;
-            font-size: 22px; /* 項目字體大小設為更大 */
-            color: #333;
-        }
-
-        td {
-            border: 1px solid black;
-            padding: 12px;
-            text-align: left;
-            font-size: 18px; /* 內容字體大小設為更小 */
+            font-size: 18px; /* 內容字體大小 */
             color: #333;
         }
 
@@ -80,6 +71,13 @@
             color: white;
             font-size: 22px; /* 項目字體比內容大 */
         }
+
+        .highlight {
+            font-size: 22px; /* 項目字體大小 */
+            color: #0f0202; /* 使用紅色突出顯示 */
+            font-weight: bold; /* 字體加粗 */
+        }
+
 
         tbody tr {
             background-color: white;
@@ -169,36 +167,36 @@
                 }
             ];
 
-            // 填充表格數據
             const tbody = d3.select("tbody");
             const rows = tbody.selectAll("tr")
                 .data(data)
                 .enter()
                 .append("tr")
                 .attr("id", d => d.id)
-                .style("background-color", "white") // 預設背景白色
+                .style("background-color", "white")
                 .on("click", function(event, d) {
                     rows.style("background-color", "white");
                     d3.select(this).style("background-color", d.color);
                 });
 
-            rows.append("td").html(d => d.id).style("font-size", "22px");  // 項目字體較大
-            rows.append("td").html(d => d.desc).style("font-size", "18px"); // 內容字體較小
+            rows.append("td").html(d => `<span class="highlight">${d.id}</span>`);  // 使用 highlight 類別
+            rows.append("td").html(d => d.desc);
 
-            // 初始化流程圖
             const svg = d3.select("#flowchart");
 
+            // 定義箭頭
             svg.append("defs").append("marker")
                 .attr("id", "arrow")
                 .attr("viewBox", "0 -5 10 10")
                 .attr("refX", 10)
                 .attr("refY", 0)
-                .attr("markerWidth", 6)
-                .attr("markerHeight", 6)
+                .attr("markerWidth", 8) // 較小箭頭寬度
+                .attr("markerHeight", 8) // 較小箭頭高度
                 .attr("orient", "auto")
                 .append("path")
                 .attr("d", "M0,-5L10,0L0,5")
-                .style("fill", "#007bff");
+                .style("fill", "#007bff")
+                .style("stroke-width", "1.5px"); // 較細的線條
 
             const nodeGroup = svg.selectAll("g.node")
                 .data(data)
@@ -250,17 +248,16 @@
                     const targetX = sourceX + 115;
                     const targetY = data.indexOf(d.target) === 3 ? 300 : 200;
 
-                    // 如果是從1.2到1.4，則畫折線
                     if (d.target.id === "1.4 政府補助碳盤查(16+4)") {
                         return `M${sourceX},${sourceY} H${sourceX + 100} V${targetY} H${targetX}`;
                     }
 
-                    // 否則，畫水平線
                     return `M${sourceX},${sourceY} H${targetX}`;
                 })
                 .attr("marker-end", "url(#arrow)")
                 .style("stroke", "#007bff")
-                .style("fill", "none");
+                .style("fill", "none")
+                .style("stroke-width", "2px"); // 較細的線條
         });
     </script>
 </body>
