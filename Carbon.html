@@ -1,285 +1,305 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
-    <meta charset="viewport" content="width=device-width, initial-scale=1.0">
-    <meta charset="UTF-8">
-    <title>專業低碳管理方案流程圖及對應表格</title>
-    <style>
-        body {
-            background-image: url('https://github.com/Sethjesus/Photo/blob/main/sky2.jpg?raw=true');
-            background-size: 100%;
-            background-position: cover;
-            background-repeat: repeat;
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            color: #333;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>碳盤查整合流程</title>
 
-        h1 {
-            text-align: center;
-            margin-top: 20px;
-            color: #007bff;
-            font-size: 48px;
-        }
-
-        #flowchart-container {
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border: none;
-            overflow-x: auto;
-            padding: 10px;
-            height: 600px;
-            background: none;
-        }
-
-        #flowchart {
-            height: 100%;
-            width: 200%;
-        }
-
-        #explanation {
-            padding: 20px;
-            margin: 20px auto;
-            width: 90%;
-            font-size: 18px;
-            color: #333;
-            line-height: 1.6;
-            border-radius: 10px;
-            background-color: rgba(255, 255, 255, 0.9); /* 白色半透明背景 */
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* 增加陰影 */
-        }
-
-        table {
-            width: 95%;
-            border-collapse: collapse;
-            margin: 20px auto;
-        }
-
-        th, td {
-            border: 1px solid black;
-            padding: 12px;
-            text-align: left;
-            font-size: 18px; /* 內容字體大小 */
-            color: #333;
-        }
-
-        th {
-            background-color: #007bff;
-            color: white;
-            font-size: 22px; /* 項目字體比內容大 */
-        }
-
-        .highlight {
-            font-size: 22px; /* 項目字體大小 */
-            color: #0f0202; /* 使用紅色突出顯示 */
-            font-weight: bold; /* 字體加粗 */
-        }
-
-
-        tbody tr {
-            background-color: white;
-            transition: background-color 0.3s ease;
-        }
-
-        tbody tr.highlight {
-            background-color: initial;
-        }
-
-        footer {
-            position: relative;
-            text-align: center;
-            padding: 20px;
-            background-color: #2c3e50;
-            color: #ffffff;
-            margin-top: 30px;
-        }
-
-        .back-button {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            padding: 10px 20px;
-            font-size: 16px;
-            color: #ffffff;
-            background-color: #007bff;
-            border: none;
-            border-radius: 5px;
-            text-decoration: none;
-            text-align: center;
-            transition: background-color 0.3s ease;
-        }
-
-        .back-button:hover {
-            background-color: #0056b3;
-        }
-        /* 左上角 logo */
-.logo {
-    position: absolute;   /* 固定在頁面左上角 */
-    top: 15px;
-    left: 15px;
-    width: 60px;
-    animation: floatLogo 3s ease-in-out infinite; /* 動態效果 */
+<style>
+/* ===============================
+   全域骨架（footer 固定在底部）
+================================ */
+html, body {
+  height: 100%;
+  margin: 0;
+}
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  font-family: Arial, sans-serif;
+  color: #333;
+  background: url('https://github.com/Sethjesus/Photo/blob/main/sky2.jpg?raw=true') center/cover fixed;
 }
 
-@keyframes floatLogo {
-    0% { transform: scale(1) translateY(0px); }
-    50% { transform: scale(1.1) translateY(-5px); }
-    100% { transform: scale(1) translateY(0px); }
+/* 主內容撐滿高度 */
+main { flex: 1; }
+
+/* ===============================
+   標題
+================================ */
+h1 {
+  text-align: center;
+  color: #007bff;
+  margin: 28px 0 12px;
 }
 
-    </style>
+/* ===============================
+   Logo
+================================ */
+.site-logo {
+  position: fixed;
+  top: 16px;
+  left: 16px;
+  width: 60px;
+  z-index: 9999;
+  animation: logoFloat 3s ease-in-out infinite;
+}
+@keyframes logoFloat {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+  100% { transform: translateY(0); }
+}
+
+/* ===============================
+   統一浮動回首頁按鈕
+================================ */
+.float-home-btn {
+  position: fixed;
+  right: 22px;
+  bottom: 22px;
+  width: 64px;
+  height: 72px;
+  border-radius: 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  background: linear-gradient(135deg, #0b6bff, #00c6ff);
+  color: #fff;
+  text-decoration: none;
+  font-weight: 700;
+  box-shadow: 0 14px 30px rgba(0,0,0,.35);
+  z-index: 9999;
+  transition: transform .2s ease, box-shadow .2s ease, filter .2s ease;
+}
+.float-home-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 18px 38px rgba(0,0,0,.45);
+  filter: brightness(1.06);
+}
+.float-home-btn .icon { font-size: 24px; line-height: 1; }
+.float-home-btn .label { font-size: 12px; line-height: 1; }
+
+/* 手機尺寸 */
+@media (max-width: 768px) {
+  .float-home-btn {
+    width: 56px;
+    height: 64px;
+    right: 16px;
+    bottom: 16px;
+  }
+}
+
+/* ===============================
+   桌機流程圖
+================================ */
+#flowchart-container {
+  width: 100%;
+  min-height: 420px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow-x: auto;
+}
+#flowchart { min-width: 900px; }
+
+/* ===============================
+   手機流程樣式
+================================ */
+.mobile-flow { display: none; }
+@media (max-width: 768px) {
+  #flowchart-container { display: none; }
+  .mobile-flow {
+    display: block;
+    width: 90%;
+    margin: 24px auto;
+  }
+  .flow-card {
+    padding: 16px;
+    margin-bottom: 14px;
+    border-radius: 14px;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 700;
+    text-align: center;
+    box-shadow: 0 6px 16px rgba(0,0,0,.25);
+  }
+  .flow-branch { display: grid; gap: 12px; }
+}
+.blue { background: #1f77b4; }
+.red { background: #d62728; }
+.orange { background: #ff7f0e; }
+.green { background: #2ca02c; }
+
+/* ===============================
+   說明區塊
+================================ */
+#explanation {
+  max-width: 1200px;
+  margin: 24px auto;
+  padding: 24px 32px;
+  background: rgba(255,255,255,.95);
+  border-radius: 16px;
+  line-height: 1.9;
+  box-shadow: 0 10px 28px rgba(0,0,0,.18);
+}
+
+/* ===============================
+   表格
+================================ */
+table {
+  width: min(1200px, 95vw);
+  margin: 24px auto;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: rgba(255,255,255,.95);
+  border-radius: 16px;
+  box-shadow: 0 10px 28px rgba(0,0,0,.2);
+}
+th, td {
+  padding: 18px 22px;
+  font-size: 18px;
+  line-height: 1.8;
+  vertical-align: top;
+}
+th {
+  background: linear-gradient(90deg, #0b5ed7, #007bff);
+  color: #fff;
+  font-size: 20px;
+  font-weight: 700;
+  text-align: left;
+}
+th:nth-child(1), td:nth-child(1) {
+  width: 28%;
+  min-width: 220px;
+}
+
+/* ===============================
+   Footer
+================================ */
+footer {
+  text-align: center;
+  padding: 18px;
+  background: #2c3e50;
+  color: #fff;
+}
+</style>
 </head>
+
 <body>
-    <h1><img src="https://github.com/Sethjesus/Photo/blob/main/UDM%20New%20Logo.jpg?raw=true" 
-     alt="公司Logo" class="logo">
-</h1>
-    <h1>碳盤查</h1>
-    <div id="flowchart-container">
-        <svg id="flowchart" viewBox="0 0 800 400" preserveAspectRatio="xMidYMid meet"></svg>
+
+<!-- 公司 Logo -->
+<img src="https://github.com/Sethjesus/Photo/blob/main/UDM%20New%20Logo.jpg?raw=true"
+     class="site-logo" alt="UDM Logo">
+
+<!-- 統一回首頁按鈕 -->
+<a href="https://jpesg.netlify.app" class="float-home-btn">
+  <span class="icon">🏠</span>
+  <span class="label">回首頁</span>
+</a>
+
+<main>
+  <h1>碳盤查流程</h1>
+
+  <!-- 桌機流程 -->
+  <div id="flowchart-container">
+    <svg id="flowchart" viewBox="0 0 900 300"></svg>
+  </div>
+
+  <!-- 手機流程 -->
+  <div class="mobile-flow">
+    <div class="flow-card blue">1.1 諮詢輔導</div>
+    <div class="flow-card red">1.2 免費可行性評估</div>
+    <div class="flow-branch">
+      <div class="flow-card orange">1.3 企業自主碳盤查</div>
+      <div class="flow-card green">1.4 政府補助碳盤查 (16+4)</div>
     </div>
+  </div>
 
-    <div id="explanation">
-        <h2>流程說明</h2>
-        <p>此流程圖展示了從企業自主碳盤查到獲得政府補助的完整過程。它涵蓋了碳盤查的各個階段，包括初步估算、深度管理平台應用及最終的可行性評估。</p>
-    </div>
+  <!-- 說明 -->
+  <div id="explanation">
+    <h2>流程說明</h2>
+    <p>
+      本流程由諮詢輔導開始，經免費可行性評估後，
+      企業可同時進行自主碳盤查或申請政府補助碳盤查（16+4），
+      協助企業完成低碳轉型與補助申請。
+    </p>
+  </div>
 
-    <table>
-        <thead>
-            <tr>
-                <th>項目</th>
-                <th>內容</th>
-            </tr>
-        </thead>
-        <tbody></tbody>
-    </table>
-    <footer>
-        <a href="https://jpesg.netlify.app/" class="back-button">回首頁</a>
-        © 2025 由景煬低碳管理方案團隊製作
-    </footer>
-    <script src="https://d3js.org/d3.v7.min.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const data = [
-                {
-                    id: "1.1 諮詢輔導",
-                    desc: "A.企業自主碳盤查諮詢輔導<br>B. 低碳化/減碳方案規劃建議 。<br>",
-                    color: "#1f77b4", // 藍色
-                },
-                {
-                    id: "1.2 免費可行性評估",
-                    desc: "A. 企業低碳化可行性評估<br>產發署低碳化補助申請可行性評估<br>",
-                    color: "#d62728", // 紅色
-                },
-                {
-                    id: "1.3 企業自主碳盤查<BR><sub>AI探盤查管理平台</sub>",
-                    desc: "A. 線上免費估算工具<img src='https://github.com/Sethjesus/Photo/blob/main/Carbon1.jpg?raw=true' alt='圖示' width='100'><img src='https://github.com/Sethjesus/Photo/blob/main/Carbon2.jpg?raw=true' alt='圖示' width='100'><br>B. AI探盤查管理平台<img src='https://github.com/Sethjesus/Photo/blob/main/Carbon3.jpg?raw=true' alt='圖示' width='100'><img src='https://github.com/Sethjesus/Photo/blob/main/Carbon4.jpg?raw=true' alt='圖示' width='100'><img src='https://github.com/Sethjesus/Photo/blob/main/Carbon5.jpg?raw=true' alt='圖示' width='100'><br>C. AI碳盤查管理平台<img src='https://github.com/Sethjesus/Photo/blob/main/Carbon6.jpg?raw=true' alt='圖示' width='100'><br>(以上方案均提供一套無線能耗足跡管理工具。<br>",
-                    color: "#ff7f0e", // 橘色
-                },
-                {
-                    id: "1.4 政府補助碳盤查(16+4)",
-                    desc: "113年經濟部<br>製造業低碳化及智慧化升級轉型診斷輔導<br><img src='https://github.com/Sethjesus/Photo/blob/main/Carbon7.jpg?raw=true' alt='圖示' width='100'><br>(含政府款16萬元，廠商自籌款4萬元)<br><a href='https://assist.nat.gov.tw/wSite/ct?ctNode=232&mp=2&xItem=283782' target='_blank'>請點下查看詳情</a><br>(可作為產發署低碳化補助申請計畫使用)<br>",
-                    color: "#2ca02c", // 綠色
-                }
-            ];
+  <!-- 表格 -->
+  <table>
+    <thead>
+      <tr><th>項目</th><th>內容</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1.1 諮詢輔導</td>
+        <td>A. 企業自主碳盤查諮詢輔導<br>B. 低碳化／減碳方案建議</td>
+      </tr>
+      <tr>
+        <td>1.2 免費可行性評估</td>
+        <td>A. 企業低碳化可行性評估<br>B. 補助申請可行性評估</td>
+      </tr>
+      <tr>
+        <td>1.3 企業自主碳盤查</td>
+        <td>
+          A. 線上估算工具<br>
+          <img src="https://github.com/Sethjesus/Photo/blob/main/Carbon1.jpg?raw=true" width="100">
+          <img src="https://github.com/Sethjesus/Photo/blob/main/Carbon2.jpg?raw=true" width="100"><br>
+          B. AI 碳盤查管理平台<br>
+          <img src="https://github.com/Sethjesus/Photo/blob/main/Carbon3.jpg?raw=true" width="100">
+          <img src="https://github.com/Sethjesus/Photo/blob/main/Carbon4.jpg?raw=true" width="100">
+          <img src="https://github.com/Sethjesus/Photo/blob/main/Carbon5.jpg?raw=true" width="100">
+        </td>
+      </tr>
+      <tr>
+        <td>1.4 政府補助碳盤查 (16+4)</td>
+        <td>
+          經濟部低碳化診斷輔導<br>
+          <img src="https://github.com/Sethjesus/Photo/blob/main/Carbon7.jpg?raw=true" width="100"><br>
+          政府補助 16 萬＋企業自籌 4 萬
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</main>
 
-            const tbody = d3.select("tbody");
-            const rows = tbody.selectAll("tr")
-                .data(data)
-                .enter()
-                .append("tr")
-                .attr("id", d => d.id)
-                .style("background-color", "white")
-                .on("click", function(event, d) {
-                    rows.style("background-color", "white");
-                    d3.select(this).style("background-color", d.color);
-                });
+<footer>
+  © 2026 由景煬低碳管理方案團隊製作
+</footer>
 
-            rows.append("td").html(d => `<span class="highlight">${d.id}</span>`);  // 使用 highlight 類別
-            rows.append("td").html(d => d.desc);
+<script src="https://d3js.org/d3.v7.min.js"></script>
+<script>
+const svg = d3.select("#flowchart");
+const nodes = [
+  {x:120,y:150,text:"1.1 諮詢輔導",color:"#1f77b4"},
+  {x:360,y:150,text:"1.2 免費可行性評估",color:"#d62728"},
+  {x:620,y:90,text:"1.3 企業自主碳盤查",color:"#ff7f0e"},
+  {x:620,y:210,text:"1.4 政府補助碳盤查",color:"#2ca02c"}
+];
+svg.append("defs").append("marker")
+  .attr("id","arrow").attr("viewBox","0 -5 10 10")
+  .attr("refX",10).attr("refY",0)
+  .attr("markerWidth",6).attr("markerHeight",6)
+  .attr("orient","auto")
+  .append("path").attr("d","M0,-5L10,0L0,5").attr("fill","#007bff");
+nodes.forEach(n=>{
+  svg.append("rect").attr("x",n.x-90).attr("y",n.y-30)
+    .attr("width",180).attr("height",60).attr("rx",12).attr("fill",n.color);
+  svg.append("text").attr("x",n.x).attr("y",n.y+6)
+    .attr("text-anchor","middle").attr("fill","#fff")
+    .attr("font-size","16px").attr("font-weight","bold").text(n.text);
+});
+[[nodes[0],nodes[1]],[nodes[1],nodes[2]],[nodes[1],nodes[3]]].forEach(l=>{
+  svg.append("line")
+    .attr("x1",l[0].x+90).attr("y1",l[0].y)
+    .attr("x2",l[1].x-90).attr("y2",l[1].y)
+    .attr("stroke","#007bff").attr("stroke-width",2)
+    .attr("marker-end","url(#arrow)");
+});
+</script>
 
-            const svg = d3.select("#flowchart");
-
-            // 定義箭頭
-            svg.append("defs").append("marker")
-                .attr("id", "arrow")
-                .attr("viewBox", "0 -5 10 10")
-                .attr("refX", 10)
-                .attr("refY", 0)
-                .attr("markerWidth", 8) // 較小箭頭寬度
-                .attr("markerHeight", 8) // 較小箭頭高度
-                .attr("orient", "auto")
-                .append("path")
-                .attr("d", "M0,-5L10,0L0,5")
-                .style("fill", "#007bff")
-                .style("stroke-width", "1.5px"); // 較細的線條
-
-            const nodeGroup = svg.selectAll("g.node")
-                .data(data)
-                .enter()
-                .append("g")
-                .attr("class", "node")
-                .attr("transform", (d, i) => `translate(${i < 2 ? 100 + i * 300 : 700}, ${i === 3 ? 300 : 200})`)
-                .on("click", function(event, d) {
-                    document.getElementById(d.id).scrollIntoView({ behavior: 'smooth', block: 'center' });
-                    rows.style("background-color", "white");
-                    d3.select(`#${d.id}`).style("background-color", d.color);
-                });
-
-            nodeGroup.each(function(d) {
-                const node = d3.select(this);
-                node.append("rect")
-                    .attr("x", -85)
-                    .attr("y", -45)
-                    .attr("width", 170)
-                    .attr("height", 90)
-                    .attr("rx", 10)
-                    .attr("ry", 10)
-                    .style("fill", d.color);
-
-                node.append("text")
-                    .attr("x", 0)
-                    .attr("y", 0)
-                    .attr("text-anchor", "middle")
-                    .style("fill", "white")
-                    .style("font-size", "14px")
-                    .html(d.id);
-            });
-
-            // 連接箭頭的邏輯
-            const linkElements = svg.selectAll(".link")
-                .data([
-                    { source: data[0], target: data[1] }, // 1.1 -> 1.2
-                    { source: data[1], target: data[2] }, // 1.2 -> 1.3
-                    { source: data[1], target: data[3] }  // 1.2 -> 1.4 (折線)
-                ])
-                .enter()
-                .append("g");
-
-            linkElements.append("path")
-                .attr("class", "link")
-                .attr("d", d => {
-                    const sourceX = 100 + data.indexOf(d.source) * 300 + 85;
-                    const sourceY = data.indexOf(d.source) === 3 ? 300 : 200;
-                    const targetX = sourceX + 115;
-                    const targetY = data.indexOf(d.target) === 3 ? 300 : 200;
-
-                    if (d.target.id === "1.4 政府補助碳盤查(16+4)") {
-                        return `M${sourceX},${sourceY} H${sourceX + 100} V${targetY} H${targetX}`;
-                    }
-
-                    return `M${sourceX},${sourceY} H${targetX}`;
-                })
-                .attr("marker-end", "url(#arrow)")
-                .style("stroke", "#007bff")
-                .style("fill", "none")
-                .style("stroke-width", "2px"); // 較細的線條
-        });
-    </script>
 </body>
 </html>
-
-
-
