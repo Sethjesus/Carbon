@@ -78,67 +78,50 @@ h2 {
 }
 
 /* ===============================
-   統一浮動回首頁按鈕 - 修正手機版可見度
+   ★★★ 全新回首頁按鈕 (固定在右下角，參考設計) ★★★
 ================================ */
-.float-home-btn {
-  position: fixed;
-  right: 22px;
-  bottom: 22px;
-  width: 64px;
-  height: 72px;
-  border-radius: 18px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 4px;
-  background: linear-gradient(135deg, var(--home-main), var(--home-sub));
-  color: #fff;
-  text-decoration: none;
-  font-weight: 700;
-  box-shadow: 0 14px 30px rgba(11,107,255,.45);
-  z-index: 9999;
-  transition: transform .2s ease, box-shadow .2s ease, filter .2s ease;
-  /* 確保按鈕可見 */
-  opacity: 1;
-  visibility: visible;
-  pointer-events: auto;
-}
-.float-home-btn:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 20px 40px rgba(11,107,255,.55);
-  filter: brightness(1.06);
-}
-.float-home-btn .icon { font-size: 24px; line-height: 1; }
-.float-home-btn .label { font-size: 12px; line-height: 1; }
+.float-home-btn{
+    position: fixed;
+    right: 22px;
+    bottom: 22px;
 
-/* 手機尺寸 - 確保按鈕依然可見且位置適當 */
-@media (max-width: 768px) {
-  .float-home-btn {
-    width: 60px;  /* 稍微加大 */
-    height: 68px;
-    right: 16px;
-    bottom: 16px;
-    /* 增強可見度 */
-    background: linear-gradient(135deg, #0b6bff, #0088ff);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.3), 0 0 0 2px rgba(255,255,255,0.2);
-    z-index: 10000; /* 更高層級 */
-  }
-  h1 { font-size: 36px; }
-  h2 { font-size: 1.8rem; }
-}
+    width: 64px;
+    height: 72px;
+    border-radius: 18px;
 
-/* 極小螢幕也確保按鈕可見 */
-@media (max-width: 480px) {
-  .float-home-btn {
-    width: 56px;
-    height: 64px;
-    right: 12px;
-    bottom: 12px;
-  }
-  .float-home-btn .icon { font-size: 22px; }
-  .float-home-btn .label { font-size: 11px; }
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+
+    color: #fff;
+    text-decoration: none;
+    font-weight: 700;
+
+    background: linear-gradient(135deg, var(--home-main), var(--home-sub));
+    box-shadow: 0 14px 30px rgba(11,107,255,.45);
+
+    z-index: 9999;
+    transition: transform .2s ease, box-shadow .2s ease, filter .2s ease;
 }
+.float-home-btn:hover{
+    transform: translateY(-3px);
+    box-shadow: 0 20px 40px rgba(11,107,255,.55);
+    filter: brightness(1.06);
+}
+.float-home-btn .icon{ font-size:24px }
+.float-home-btn .label{ font-size:12px }
+
+@media (max-width:768px){
+    .float-home-btn{
+        width:56px;
+        height:64px;
+        right:16px;
+        bottom:16px;
+    }
+}
+  
 
 /* ===============================
    桌機流程圖
@@ -573,17 +556,16 @@ td img:hover {
 }
 
 /* ===============================
-   ★★★ 新增：進度標籤白色字體 (符合需求) ★★★
+   ★★★ 進度標籤白色字體 ★★★
 ================================ */
 .ai-stage-labels {
   display: flex;
   justify-content: space-between;
   font-weight: 800;
   color: #ffffff;  /* 白色字體 */
-  text-shadow: 1px 1px 3px rgba(0,0,0,0.8); /* 加點陰影更清楚 */
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
   margin-bottom: 4px;
 }
-/* 同時強化 progress-text 在某些背景下的可讀性 */
 .progress-text {
   color: #ffffff;
   text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
@@ -602,14 +584,13 @@ footer {
 }
 </style>
 </head>
-
 <body>
 
 <!-- 公司 Logo (呼吸效果) -->
 <img src="https://pub-531c96b02ed745e0bbfd0e96bfde8518.r2.dev/UDM%20New%20Logo.jpg"
      class="breathing-logo" alt="UDM Logo">
 
-<!-- 統一回首頁按鈕 - 已修正手機版可見度 -->
+<!-- ★★★ 全新回首頁按鈕：固定在右下角，圓形設計，清晰可見 ★★★ -->
 <a href="https://jpesg.netlify.app" class="float-home-btn">
   <span class="icon">🏠</span>
   <span class="label">回首頁</span>
