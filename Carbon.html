@@ -78,7 +78,7 @@ h2 {
 }
 
 /* ===============================
-   統一浮動回首頁按鈕
+   統一浮動回首頁按鈕 - 修正手機版可見度
 ================================ */
 .float-home-btn {
   position: fixed;
@@ -99,6 +99,10 @@ h2 {
   box-shadow: 0 14px 30px rgba(11,107,255,.45);
   z-index: 9999;
   transition: transform .2s ease, box-shadow .2s ease, filter .2s ease;
+  /* 確保按鈕可見 */
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
 }
 .float-home-btn:hover {
   transform: translateY(-3px);
@@ -108,16 +112,32 @@ h2 {
 .float-home-btn .icon { font-size: 24px; line-height: 1; }
 .float-home-btn .label { font-size: 12px; line-height: 1; }
 
-/* 手機尺寸 */
+/* 手機尺寸 - 確保按鈕依然可見且位置適當 */
 @media (max-width: 768px) {
   .float-home-btn {
-    width: 56px;
-    height: 64px;
+    width: 60px;  /* 稍微加大 */
+    height: 68px;
     right: 16px;
     bottom: 16px;
+    /* 增強可見度 */
+    background: linear-gradient(135deg, #0b6bff, #0088ff);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3), 0 0 0 2px rgba(255,255,255,0.2);
+    z-index: 10000; /* 更高層級 */
   }
   h1 { font-size: 36px; }
   h2 { font-size: 1.8rem; }
+}
+
+/* 極小螢幕也確保按鈕可見 */
+@media (max-width: 480px) {
+  .float-home-btn {
+    width: 56px;
+    height: 64px;
+    right: 12px;
+    bottom: 12px;
+  }
+  .float-home-btn .icon { font-size: 22px; }
+  .float-home-btn .label { font-size: 11px; }
 }
 
 /* ===============================
@@ -553,6 +573,24 @@ td img:hover {
 }
 
 /* ===============================
+   ★★★ 新增：進度標籤白色字體 (符合需求) ★★★
+================================ */
+.ai-stage-labels {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 800;
+  color: #ffffff;  /* 白色字體 */
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.8); /* 加點陰影更清楚 */
+  margin-bottom: 4px;
+}
+/* 同時強化 progress-text 在某些背景下的可讀性 */
+.progress-text {
+  color: #ffffff;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
+  font-weight: 800;
+}
+
+/* ===============================
    Footer
 ================================ */
 footer {
@@ -571,7 +609,7 @@ footer {
 <img src="https://pub-531c96b02ed745e0bbfd0e96bfde8518.r2.dev/UDM%20New%20Logo.jpg"
      class="breathing-logo" alt="UDM Logo">
 
-<!-- 統一回首頁按鈕 -->
+<!-- 統一回首頁按鈕 - 已修正手機版可見度 -->
 <a href="https://jpesg.netlify.app" class="float-home-btn">
   <span class="icon">🏠</span>
   <span class="label">回首頁</span>
@@ -716,7 +754,7 @@ footer {
               <span class="policy-tag">#製造業優先</span>
               <span class="policy-tag">#需先完成階段一診斷</span>
               <span class="policy-tag">#可串聯碳盤查</span>
-              
+             
             </div>
           </td>
         </tr>
@@ -756,15 +794,16 @@ footer {
       <span class="policy-tag">勞動部 人才培訓</span>
     </div>
 
-    <!-- 進度意象 -->
+    <!-- 進度意象：三階段標籤已改為白色字體 (符合要求) -->
     <div style="margin: 20px 0 10px; max-width:600px; margin-left:auto; margin-right:auto;">
-      <div style="display: flex; justify-content: space-between; font-weight: 600;">
+      <!-- 此處的三個標籤文字設為白色，並使用新增的 class "ai-stage-labels" 確保顏色 -->
+      <div class="ai-stage-labels">
         <span>AI診斷</span><span>應用導入</span><span>研發轉型</span>
       </div>
       <div class="progress-bar" style="height: 18px;">
         <div class="progress-fill" style="width: 70%; background: linear-gradient(90deg,#0b6bff,#22c55e);"></div>
       </div>
-      <div class="progress-text" style="color:#0b5ed7; text-align:center;">三階段逐步升級，政府補助挹注</div>
+      <div class="progress-text" style="text-align:center;">三階段逐步升級，政府補助挹注</div>
     </div>
   </div>
 
