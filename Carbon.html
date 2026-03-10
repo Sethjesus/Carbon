@@ -3,9 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>碳盤查整合流程 (桌機表格放大版)</title>
+<title>碳盤查整合流程｜低碳化減碳方案</title>
 
 <style>
+/* ===============================
+   全站主色定義（統一藍）
+================================ */
+:root{
+  --home-main: #0b6bff;
+  --home-sub:  #00c6ff;
+}
+
 /* ===============================
    全域骨架（footer 固定在底部）
 ================================ */
@@ -17,9 +25,10 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  font-family: Arial, sans-serif;
-  color: #333;
-  background: url('https://github.com/Sethjesus/Photo/blob/main/sky2.jpg?raw=true') center/cover fixed;
+  font-family: system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+  color: #0f172a;
+  /* 底圖為 inventory.png */
+  background: url('https://pub-531c96b02ed745e0bbfd0e96bfde8518.r2.dev/inventory.png') center/cover fixed;
 }
 
 /* 主內容撐滿高度 */
@@ -30,30 +39,42 @@ main { flex: 1; }
 ================================ */
 h1 {
   text-align: center;
-  color: #007bff;
+  color: #b3ff00;
   margin: 28px 0 12px;
-  font-size: 2.4rem;        /* 桌機標題加大 */
+  font-size: 48px;
+  font-weight: 800;
+  text-shadow: 4px 4px 8px rgba(0,0,0,.9);
   letter-spacing: 1px;
 }
-h2 { font-size: 2rem; }      /* 子標題也響應放大 */
+h2 { 
+  font-size: 2rem; 
+  color: #0f172a;
+  margin-top: 40px;
+  margin-bottom: 20px;
+  text-align: center;
+  text-shadow: 2px 2px 4px rgba(255,255,255,0.5);
+}
 
 /* ===============================
-   Logo
+   Logo (呼吸效果)
 ================================ */
-.site-logo {
+.breathing-logo {
   position: fixed;
-  top: 16px;
-  left: 16px;
-  width: 70px;               /* 稍微加大Logo */
-  z-index: 9999;
-  animation: logoFloat 3s ease-in-out infinite;
-  border-radius: 8px;        /* 加點圓角更柔和 */
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  top: 14px;
+  left: 14px;
+  width: 64px;
+  z-index: 999;
+  animation: breathe 4.2s ease-in-out infinite;
+  filter: drop-shadow(0 6px 16px rgba(0,0,0,.35));
+  border-radius: 8px;
 }
-@keyframes logoFloat {
-  0% { transform: translateY(0); }
-  50% { transform: translateY(-6px); }
-  100% { transform: translateY(0); }
+@keyframes breathe {
+  0% { transform: scale(1); opacity: .95; }
+  50% { transform: scale(1.08); opacity: 1; }
+  100% { transform: scale(1); opacity: .95; }
+}
+@media (max-width: 768px) {
+  .breathing-logo { width: 52px; }
 }
 
 /* ===============================
@@ -63,29 +84,29 @@ h2 { font-size: 2rem; }      /* 子標題也響應放大 */
   position: fixed;
   right: 22px;
   bottom: 22px;
-  width: 72px;
-  height: 80px;
-  border-radius: 20px;
+  width: 64px;
+  height: 72px;
+  border-radius: 18px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 4px;
-  background: linear-gradient(135deg, #0b6bff, #00c6ff);
+  background: linear-gradient(135deg, var(--home-main), var(--home-sub));
   color: #fff;
   text-decoration: none;
   font-weight: 700;
-  box-shadow: 0 14px 30px rgba(0,0,0,.35);
+  box-shadow: 0 14px 30px rgba(11,107,255,.45);
   z-index: 9999;
   transition: transform .2s ease, box-shadow .2s ease, filter .2s ease;
 }
 .float-home-btn:hover {
   transform: translateY(-3px);
-  box-shadow: 0 18px 38px rgba(0,0,0,.45);
+  box-shadow: 0 20px 40px rgba(11,107,255,.55);
   filter: brightness(1.06);
 }
-.float-home-btn .icon { font-size: 28px; line-height: 1; }
-.float-home-btn .label { font-size: 13px; line-height: 1; }
+.float-home-btn .icon { font-size: 24px; line-height: 1; }
+.float-home-btn .label { font-size: 12px; line-height: 1; }
 
 /* 手機尺寸 */
 @media (max-width: 768px) {
@@ -95,8 +116,8 @@ h2 { font-size: 2rem; }      /* 子標題也響應放大 */
     right: 16px;
     bottom: 16px;
   }
-  h1 { font-size: 1.8rem; }
-  h2 { font-size: 1.5rem; }
+  h1 { font-size: 36px; }
+  h2 { font-size: 1.8rem; }
 }
 
 /* ===============================
@@ -109,6 +130,7 @@ h2 { font-size: 2rem; }      /* 子標題也響應放大 */
   justify-content: center;
   align-items: center;
   overflow-x: auto;
+  margin-bottom: 20px;
 }
 #flowchart { min-width: 900px; }
 
@@ -141,103 +163,333 @@ h2 { font-size: 2rem; }      /* 子標題也響應放大 */
 .green { background: #2ca02c; }
 
 /* ===============================
-   說明區塊 (更寬敞)
+   說明區塊 (與表格風格一致)
 ================================ */
 #explanation {
-  max-width: 1400px;          /* 放寬最大寬度 */
+  max-width: 1200px;
+  width: min(1200px, 94vw);
   margin: 32px auto;
-  padding: 32px 48px;         /* 增加左右內距 */
-  background: rgba(255,255,255,.95);
-  border-radius: 24px;
-  line-height: 2.1;           /* 行高更舒適 */
-  box-shadow: 0 15px 34px rgba(0,0,0,.2);
-  font-size: 1.3rem;          /* 說明文字加大 */
+  padding: 32px 40px;
+  background: rgba(255,255,255,.9);
+  border-radius: 18px;
+  line-height: 2.1;
+  box-shadow: 0 18px 40px rgba(0,0,0,.18);
+  font-size: 1.3rem;
+  backdrop-filter: blur(2px);
 }
 
 /* ===============================
-   ★★★ 表格放大 (桌機版) ★★★
-   提升字體、內距、最小寬度，讓閱讀舒適
+   容器 (與低碳化頁面一致)
+================================ */
+.wrap {
+  width: min(1200px, 94vw);
+  margin: 0 auto 40px;
+}
+
+/* ===============================
+   ★★★ 表格 (完全參照低碳化方案) ★★★
 ================================ */
 table {
-  width: min(1400px, 90vw);    /* 最大寬度提升至1400px，佔90%視窗寬 */
-  margin: 36px auto;
-  border-collapse: separate;
-  border-spacing: 0;
-  background: rgba(255,255,255,.97);
-  border-radius: 24px;         /* 圓角略增 */
-  box-shadow: 0 18px 36px rgba(0,0,0,.25);
-  overflow: hidden;            /* 配合圓角 */
+  width: 100%;
+  border-collapse: collapse;
+  background: rgba(255,255,255,.85);
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 18px 40px rgba(0,0,0,.18);
+  backdrop-filter: blur(2px);
+  margin-bottom: 30px;
 }
 
-th, td {
-  padding: 28px 32px;          /* ★ 大幅增加儲存格內距 (上下28，左右32) */
-  font-size: 1.4rem;           /* ★ 基本字體加大到約22.4px */
-  line-height: 2.0;            /* 行間舒適 */
-  vertical-align: top;
-}
-
-/* 第一欄可稍微再寬一點，但現在28%+min-width已經足夠 */
 th {
-  background: linear-gradient(145deg, #0b5bff, #0047b3);
+  background: linear-gradient(0deg, #0b6bff, #084fbe);
   color: #fff;
-  font-size: 1.7rem;           /* ★ 標題字更大 (約27px) */
-  font-weight: 800;
   text-align: left;
-  letter-spacing: 0.5px;
-  border-bottom: 3px solid rgba(255,255,255,0.2);
+  padding: 14px 20px;
+  font-size: 20px;
+  font-weight: 700;
 }
 
-/* 設定第一欄比例，但已透過padding自然撐開，此處保留彈性 */
-th:nth-child(1), td:nth-child(1) {
-  width: 30%;                  /* 稍微調整讓項目欄多一點 */
-  min-width: 300px;            /* 加大最小寬度，避免內容擁擠 */
+td {
+  vertical-align: top;
+  padding: 22px 26px;
+  border-bottom: 1px solid rgba(0,0,0,.1);
+}
+tr:last-child td { border-bottom: none; }
+
+/* 項目欄位樣式 */
+td.item-col {
+  width: 30%;
+  min-width: 250px;
+  font-size: 20px;
+  font-weight: 800;
+  color: #0b5ed7;
+  background: rgba(255,255,255,0.5);
 }
 
-/* 表格內圖片調整 (讓圖片更大、整齊) */
+/* 內容欄位樣式 */
+td.content-col {
+  width: 70%;
+  line-height: 2.0;
+  font-size: 18px;
+}
+
+/* 清單樣式 */
+.content-col ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.content-col li {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 12px;
+}
+.label {
+  min-width: 32px;
+  font-weight: 800;
+  color: #0b5ed7;
+}
+.primary { 
+  font-weight: 800; 
+  color: #0b5ed7; 
+}
+.secondary { 
+  color: #374151; 
+}
+a { 
+  color: inherit; 
+  text-decoration: none; 
+  font-weight: 600;
+}
+a:hover { 
+  text-decoration: underline; 
+  color: #0b6bff;
+}
+
+/* 表格內圖片 */
 td img {
-  width: 130px;                /* 原本100px → 130px 更大更清晰 */
+  width: 130px;
   height: auto;
   border-radius: 12px;
-  margin: 8px 12px 8px 0;
-  box-shadow: 0 6px 14px rgba(0,0,0,0.2);
+  margin: 8px 16px 8px 0;
+  box-shadow: 0 8px 18px rgba(0,0,0,0.25);
   transition: transform 0.2s ease;
   border: 2px solid #fff;
 }
 td img:hover {
   transform: scale(1.05);
-  box-shadow: 0 12px 22px rgba(0,0,0,0.3);
+  box-shadow: 0 12px 24px rgba(0,0,0,0.35);
 }
 
-/* 第二欄內文字如果包含 <br> 分行，間距適中 */
-td br { content: ""; display: block; margin: 6px 0; }
-
-/* 表身交錯底色 (提高可讀性) */
-tbody tr:nth-child(even) {
-  background-color: rgba(0, 100, 255, 0.04);
+/* 進度條 */
+.progress-bar {
+  height: 14px;
+  background: #e5e7eb;
+  border-radius: 999px;
+  overflow: hidden;
+  margin: 10px 0;
+}
+.progress-fill {
+  width: 30%;
+  height: 100%;
+  background: linear-gradient(90deg, #22c55e, #16a34a);
+}
+.progress-text {
+  margin-top: 6px;
+  font-weight: 800;
+  color: #166534;
 }
 
-/* 針對小螢幕 (手機) 恢復原本較小的表格設定，避免爆板 */
+/* ===============================
+   ★★★ 手機版表格優化 (卡片模式) ★★★
+================================ */
 @media (max-width: 900px) {
-  table {
-    width: 95vw;
-    font-size: 1rem;
-  }
-  th, td {
-    padding: 16px 18px;
-    font-size: 1rem;
-  }
-  th { font-size: 1.3rem; }
-  td img { width: 80px; }      /* 手機圖片縮小 */
-}
-
-/* 更窄的裝置時堆疊顯示(極端情況) */
-@media (max-width: 600px) {
-  th, td {
+  /* 重置表格顯示 */
+  table, thead, tbody, tr, th, td {
     display: block;
-    width: 100% !important;
+    width: 100%;
+  }
+  
+  /* 隱藏表頭 */
+  thead {
+    display: none;
+  }
+  
+  /* 每列變成獨立卡片 */
+  tbody tr {
+    display: block;
+    margin-bottom: 24px;
+    background: rgba(255,255,255,.95);
+    border-radius: 20px;
+    box-shadow: 0 12px 28px rgba(0,0,0,0.2);
+    padding: 0;
+    overflow: hidden;
+  }
+  
+  /* 項目欄變成卡片標題 */
+  td.item-col {
+    display: block;
+    background: linear-gradient(145deg, #0b6bff, #084fbe);
+    color: white;
+    font-size: 24px;
+    font-weight: 800;
+    padding: 20px 24px;
+    margin: 0;
+    width: auto;
+    border-radius: 20px 20px 0 0;
+    white-space: normal;
+    word-break: break-word;
+    overflow: visible;
+    text-overflow: clip;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    letter-spacing: 0.5px;
+    min-width: 100%;
     box-sizing: border-box;
   }
-  th { text-align: center; }
+  
+  /* 內容欄變成卡片內容 */
+  td.content-col {
+    display: block;
+    padding: 22px;
+    font-size: 18px;
+    line-height: 1.9;
+    background: white;
+  }
+  
+  /* 調整圖片大小 */
+  td img {
+    width: 100px;
+  }
+  
+  /* 調整清單間距 */
+  .content-col li {
+    margin-bottom: 14px;
+  }
+}
+
+/* 極窄螢幕微調 */
+@media (max-width: 480px) {
+  td.item-col {
+    font-size: 22px;
+    padding: 18px 20px;
+  }
+  td.content-col {
+    padding: 18px;
+    font-size: 17px;
+  }
+  td img {
+    width: 85px;
+  }
+  .label {
+    min-width: 28px;
+  }
+}
+
+/* 非常小的螢幕 */
+@media (max-width: 360px) {
+  td.item-col {
+    font-size: 20px;
+    padding: 16px 18px;
+  }
+}
+
+/* 分隔線 */
+.section-divider {
+  text-align: center;
+  margin: 20px 0;
+  position: relative;
+}
+.section-divider::before {
+  content: "";
+  display: block;
+  width: 80%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #0b6bff, transparent);
+  margin: 0 auto;
+}
+
+/* ===============================
+   政府雙軸轉型政策 特殊樣式
+================================ */
+.policy-tag {
+  display: inline-block;
+  background: #0b6bff;
+  color: white;
+  padding: 4px 16px;
+  border-radius: 40px;
+  font-size: 1rem;
+  font-weight: 600;
+  margin-right: 12px;
+  margin-bottom: 6px;
+}
+.policy-tag-gray {
+  background: #6c757d;
+}
+.policy-highlight {
+  border-left: 6px solid #0b6bff;
+  background: rgba(11,107,255,0.05);
+  padding: 20px 24px;
+  border-radius: 18px;
+  margin: 20px 0;
+}
+.dual-icon {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.dual-icon span {
+  font-size: 2.2rem;
+}
+/* 措施階段卡片 (用來呈現AI三階段) */
+.stage-card {
+  background: white;
+  border-radius: 16px;
+  padding: 16px 20px;
+  margin-bottom: 18px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+  border: 1px solid rgba(11,107,255,0.2);
+}
+.stage-title {
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: #0b6bff;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.stage-detail {
+  font-size: 1.1rem;
+  padding-left: 18px;
+  border-left: 3px solid #00c6ff;
+  margin: 12px 0;
+}
+.stage-fund {
+  background: #f0f7ff;
+  padding: 12px 16px;
+  border-radius: 14px;
+  font-weight: 600;
+  color: #084fbe;
+}
+.stage-note {
+  font-size: 0.95rem;
+  color: #2d3c5e;
+  margin-top: 8px;
+}
+
+/* 截止提醒 */
+.deadline-badge {
+  background: #fff3cd;
+  border: 1px solid #ffeeba;
+  color: #856404;
+  border-radius: 60px;
+  padding: 12px 24px;
+  margin: 0 auto 30px;
+  text-align: center;
+  width: fit-content;
+  font-weight: 700;
+  font-size: 1.2rem;
 }
 
 /* ===============================
@@ -255,9 +507,9 @@ footer {
 
 <body>
 
-<!-- 公司 Logo -->
+<!-- 公司 Logo (呼吸效果) -->
 <img src="https://pub-531c96b02ed745e0bbfd0e96bfde8518.r2.dev/UDM%20New%20Logo.jpg"
-     class="site-logo" alt="UDM Logo">
+     class="breathing-logo" alt="UDM Logo">
 
 <!-- 統一回首頁按鈕 -->
 <a href="https://jpesg.netlify.app" class="float-home-btn">
@@ -283,7 +535,7 @@ footer {
     </div>
   </div>
 
-  <!-- 說明區塊（文字已加大） -->
+  <!-- 說明區塊 -->
   <div id="explanation">
     <h2>流程說明</h2>
     <p>
@@ -293,42 +545,174 @@ footer {
     </p>
   </div>
 
-  <!-- 表格 (桌機已顯著放大) -->
-  <table>
-    <thead>
-      <tr><th>項目</th><th>內容</th></tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>1.1 諮詢輔導</td>
-        <td>A. 企業自主碳盤查諮詢輔導<br>B. 低碳化／減碳方案建議</td>
-      </tr>
-      <tr>
-        <td>1.2 免費可行性評估</td>
-        <td>A. 企業低碳化可行性評估<br>B. 補助申請可行性評估</td>
-      </tr>
-      <tr>
-        <td>1.3 企業自主碳盤查</td>
-        <td>
-          A. 線上估算工具<br>
-          <img src="https://pub-531c96b02ed745e0bbfd0e96bfde8518.r2.dev/Carbon1.jpg" width="130">
-          <img src="https://pub-531c96b02ed745e0bbfd0e96bfde8518.r2.dev/Carbon2.jpg" width="130"><br>
-          B. AI 碳盤查管理平台<br>
-          <img src="https://pub-531c96b02ed745e0bbfd0e96bfde8518.r2.dev/Carbon3.jpg" width="130">
-          <img src="https://pub-531c96b02ed745e0bbfd0e96bfde8518.r2.dev/Carbon4.jpg" width="130">
-          <img src="https://pub-531c96b02ed745e0bbfd0e96bfde8518.r2.dev/Carbon5.jpg" width="130">
-        </td>
-      </tr>
-      <tr>
-        <td>1.4 政府補助碳盤查 (16+4)</td>
-        <td>
-          經濟部低碳化診斷輔導<br>
-          <img src="https://pub-531c96b02ed745e0bbfd0e96bfde8518.r2.dev/Carbon7.jpg" width="130"><br>
-          政府補助 16 萬＋企業自籌 4 萬
-        </td>
-      </tr>
-    </tbody>
-  </table>
+  <!-- 碳盤查表格 -->
+  <div class="wrap">
+    <h2>碳盤查項目</h2>
+    <table>
+      <thead>
+        <tr><th>項目</th><th>內容</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="item-col">1.1 諮詢輔導</td>
+          <td class="content-col">
+            <ul>
+              <li class="primary"><span class="label">A.</span> 企業自主碳盤查諮詢輔導</li>
+              <li class="primary"><span class="label">B.</span> 低碳化／減碳方案建議</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td class="item-col">1.2 免費可行性評估</td>
+          <td class="content-col">
+            <ul>
+              <li class="primary"><span class="label">A.</span> 企業低碳化可行性評估</li>
+              <li class="primary"><span class="label">B.</span> 補助申請可行性評估</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td class="item-col">1.3 企業自主碳盤查</td>
+          <td class="content-col">
+            <ul>
+              <li class="primary"><span class="label">A.</span> 線上估算工具</li>
+            </ul>
+            <div style="display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0;">
+              <img src="https://pub-531c96b02ed745e0bbfd0e96bfde8518.r2.dev/Carbon1.jpg" width="130">
+              <img src="https://pub-531c96b02ed745e0bbfd0e96bfde8518.r2.dev/Carbon2.jpg" width="130">
+            </div>
+            <ul>
+              <li class="primary"><span class="label">B.</span> AI 碳盤查管理平台</li>
+            </ul>
+            <div style="display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0;">
+              <img src="https://pub-531c96b02ed745e0bbfd0e96bfde8518.r2.dev/Carbon3.jpg" width="130">
+              <img src="https://pub-531c96b02ed745e0bbfd0e96bfde8518.r2.dev/Carbon4.jpg" width="130">
+              <img src="https://pub-531c96b02ed745e0bbfd0e96bfde8518.r2.dev/Carbon5.jpg" width="130">
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="item-col" style="color: #000000;">1.4 政府補助碳盤查 (16+4)</td>
+          <td class="content-col">
+            <ul>
+              <li class="primary"><span class="label"></span> 經濟部低碳化診斷輔導</li>
+            </ul>
+            <div style="margin: 12px 0;">
+              <img src="https://pub-531c96b02ed745e0bbfd0e96bfde8518.r2.dev/Carbon7.jpg" width="130">
+            </div>
+            <ul>
+              <li class="secondary"><span class="label"></span> 政府補助 16 萬＋企業自籌 4 萬</li>
+            </ul>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ★★★ 政府雙軸轉型政策（整合版：AI數位轉型 + SIIR參考）★★★ -->
+  <div class="wrap" style="margin-top: 10px;">
+    <h2>🌟 政府雙軸轉型政策（AI數位轉型 + SIIR參考）</h2>
+    
+    <!-- SIIR 截止提醒 -->
+    
+
+    <table>
+      <thead>
+        <tr><th>政策方案</th><th>補助內容／階段說明</th></tr>
+      </thead>
+      <tbody>
+        <!-- 措施1 AI數位轉型（製造業） -->
+        <tr>
+          <td class="item-col">
+            🤖 措施1：AI數位轉型<br>
+            <span style="font-size:0.9rem;">經濟部產發署 (製造業)</span>
+            <div style="margin-top:8px;"><span class="policy-tag">進行中</span></div>
+          </td>
+          <td class="content-col">
+            <!-- 階段一 -->
+            <div class="stage-card">
+              <div class="stage-title"><span>🔹</span> 階段一：AI診斷與輔導</div>
+              <div class="stage-detail">
+                政府出 <strong style="font-size:1.4rem;">19萬</strong> + 企業自付 <strong style="font-size:1.4rem;">1萬</strong>
+              </div>
+              <div class="stage-fund">📌 合計20萬診斷輔導經費，企業僅負擔5%</div>
+            </div>
+            <!-- 階段二 -->
+            <div class="stage-card">
+              <div class="stage-title"><span>🔸</span> 階段二：AI應用導入（承接診斷結果）</div>
+              <div class="stage-detail">
+                ⚙️ 工具導入 <strong>最高補助10萬</strong> &nbsp;&nbsp;|&nbsp;&nbsp; 🧑‍🏫 人才培訓 <strong>最高補助12萬</strong>
+              </div>
+              <div class="stage-fund">📌 兩項合計最高22萬，強化AI落地能力</div>
+            </div>
+            <!-- 階段三 -->
+            <div class="stage-card">
+              <div class="stage-title"><span>🔺</span> 階段三：研發轉型補助（承接導入成效）</div>
+              <div class="stage-detail">
+                提供研發與設備汰換補助 / 企業自籌 <strong>50%</strong><br>
+                <span style="font-size:1.2rem;">▪ 個案最高 <strong style="color:#0b6bff;">500萬</strong>  ▪ 產業聯盟最高 <strong style="color:#0b6bff;">4,000萬</strong></span>
+              </div>
+              <div class="stage-fund">📌 鼓勵深度研發與低碳智慧設備升級</div>
+            </div>
+            <!-- 聯絡窗口 -->
+            <div class="contact" style="background:#e6f0ff; border-radius:30px; padding:14px 20px; margin-top:20px;">
+              <span class="policy-tag">#製造業優先</span>
+              <span class="policy-tag">#需先完成階段一診斷</span>
+              <span class="policy-tag">#可串聯碳盤查</span>
+             
+            </div>
+          </td>
+        </tr>
+
+        <!-- 措施1 AI數位轉型（服務業/商業署） -->
+        <tr>
+          <td class="item-col">
+            🏬 措施1：AI數位轉型<br>
+            <span style="font-size:0.9rem;">經濟部商業署 (服務業)</span>
+            <div style="margin-top:8px;"><span class="policy-tag">進行中</span></div>
+          </td>
+          <td class="content-col">
+            <div class="stage-card">
+              <div class="stage-title"><span>①</span> 階段一：AI需求診斷（免費）</div>
+              <div class="stage-detail">
+                線上診斷評估業者導入AI現況與需求，引介適切資源
+              </div>
+            </div>
+            <div class="stage-card">
+              <div class="stage-title"><span>②</span> 階段二：AI轉型補助（分級輔導）</div>
+              <div class="stage-detail">
+                <strong>個案補助</strong> 最高 <strong>300萬元</strong>（企業自籌50%）<br>
+                <strong>整合型補助</strong> 每案最高 <strong>2,000萬元</strong>（企業自籌50%）
+              </div>
+            </div>
+            <div class="contact" style="background:#e6f0ff; border-radius:30px; padding:14px 20px; margin-top:20px;">
+             
+            </div>
+          </td>
+      
+      </tbody>
+    </table>
+
+    <!-- 其他雙軸資源快速對照 -->
+    <div style="background: rgba(255,255,255,0.85); border-radius: 60px; padding: 20px 28px; margin: 20px auto; text-align: center;">
+      <span class="policy-tag">中企署 智慧低碳補助</span>
+      <span class="policy-tag">技術司 AI試製場域</span>
+      <span class="policy-tag">能源署 ESCO節能</span>
+      <span class="policy-tag">勞動部 人才培訓</span>
+    </div>
+
+    <!-- 進度意象 (保留) -->
+    <div style="margin: 20px 0 10px; max-width:600px; margin-left:auto; margin-right:auto;">
+      <div style="display: flex; justify-content: space-between; font-weight: 600;">
+        <span>AI診斷</span><span>應用導入</span><span>研發轉型</span>
+      </div>
+      <div class="progress-bar" style="height: 18px;">
+        <div class="progress-fill" style="width: 70%; background: linear-gradient(90deg,#0b6bff,#22c55e);"></div>
+      </div>
+      <div class="progress-text" style="color:#0b5ed7; text-align:center;">三階段逐步升級，政府補助挹注</div>
+    </div>
+  </div>
+
 </main>
 
 <footer>
@@ -337,13 +721,12 @@ footer {
 
 <script src="https://d3js.org/d3.v7.min.js"></script>
 <script>
-// 流程圖 SVG (與之前相同，不影響表格)
 const svg = d3.select("#flowchart");
 const nodes = [
   {x:120,y:150,text:"1.1 諮詢輔導",color:"#1f77b4"},
   {x:360,y:150,text:"1.2 免費可行性評估",color:"#d62728"},
   {x:620,y:90,text:"1.3 企業自主碳盤查",color:"#ff7f0e"},
-  {x:620,y:210,text:"1.4 政府補助碳盤查 (16+4)",color:"#2ca02c"}  // 加上(16+4)一致
+  {x:620,y:210,text:"1.4 政府補助碳盤查 (16+4)",color:"#2ca02c"}
 ];
 svg.append("defs").append("marker")
   .attr("id","arrow").attr("viewBox","0 -5 10 10")
