@@ -2,7 +2,7 @@
 <html lang="zh-TW">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
 <title>碳盤查整合流程｜低碳化減碳方案</title>
 
 <style>
@@ -135,17 +135,23 @@ h2 {
 #flowchart { min-width: 900px; }
 
 /* ===============================
-   手機流程樣式
+   手機流程樣式 - 優化置中
 ================================ */
 .mobile-flow { display: none; }
 @media (max-width: 768px) {
   #flowchart-container { display: none; }
   .mobile-flow {
-    display: block;
-    width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
     margin: 24px auto;
+    padding: 0 16px;
+    box-sizing: border-box;
   }
   .flow-card {
+    width: 100%;
+    max-width: 400px;
     padding: 16px;
     margin-bottom: 14px;
     border-radius: 14px;
@@ -154,8 +160,19 @@ h2 {
     font-weight: 700;
     text-align: center;
     box-shadow: 0 6px 16px rgba(0,0,0,.25);
+    box-sizing: border-box;
   }
-  .flow-branch { display: grid; gap: 12px; }
+  .flow-branch { 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    gap: 12px; 
+  }
+  .flow-branch .flow-card {
+    max-width: 400px;
+    margin-bottom: 0;
+  }
 }
 .blue { background: #1f77b4; }
 .red { background: #d62728; }
@@ -301,7 +318,7 @@ td img:hover {
 }
 
 /* ===============================
-   ★★★ 手機版表格優化 (卡片模式) ★★★
+   ★★★ 手機版表格優化 (完美置中卡片模式) ★★★
 ================================ */
 @media (max-width: 900px) {
   /* 重置表格顯示 */
@@ -315,10 +332,12 @@ td img:hover {
     display: none;
   }
   
-  /* 每列變成獨立卡片 */
+  /* 每列變成獨立卡片 - 置中 */
   tbody tr {
     display: block;
-    margin-bottom: 24px;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto 24px auto;
     background: rgba(255,255,255,.95);
     border-radius: 20px;
     box-shadow: 0 12px 28px rgba(0,0,0,0.2);
@@ -335,16 +354,14 @@ td img:hover {
     font-weight: 800;
     padding: 20px 24px;
     margin: 0;
-    width: auto;
+    width: 100%;
     border-radius: 20px 20px 0 0;
     white-space: normal;
     word-break: break-word;
-    overflow: visible;
-    text-overflow: clip;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
     letter-spacing: 0.5px;
-    min-width: 100%;
     box-sizing: border-box;
+    text-align: left;
   }
   
   /* 內容欄變成卡片內容 */
@@ -354,16 +371,46 @@ td img:hover {
     font-size: 18px;
     line-height: 1.9;
     background: white;
+    width: 100%;
+    box-sizing: border-box;
   }
   
-  /* 調整圖片大小 */
+  /* 調整圖片置中 */
+  td.content-col div[style*="flex"] {
+    justify-content: center;
+  }
+  
   td img {
     width: 100px;
+    margin: 8px 8px 8px 0;
   }
   
   /* 調整清單間距 */
   .content-col li {
     margin-bottom: 14px;
+  }
+
+  /* 政策標籤群組置中 */
+  .policy-tag {
+    margin: 4px 6px;
+  }
+
+  /* 聯絡窗口區塊置中 */
+  .contact, [class*="contact"] {
+    text-align: left;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  /* stage-card 內部調整 */
+  .stage-card {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  /* stage-detail 文字對齊 */
+  .stage-detail {
+    text-align: left;
   }
 }
 
@@ -382,6 +429,11 @@ td img:hover {
   }
   .label {
     min-width: 28px;
+  }
+  
+  .mobile-flow .flow-card {
+    max-width: 350px;
+    font-size: 16px;
   }
 }
 
@@ -492,6 +544,14 @@ td img:hover {
   font-size: 1.2rem;
 }
 
+/* 聯絡窗口樣式 */
+.contact {
+  background: #e6f0ff;
+  border-radius: 30px;
+  padding: 14px 20px;
+  margin-top: 20px;
+}
+
 /* ===============================
    Footer
 ================================ */
@@ -525,7 +585,7 @@ footer {
     <svg id="flowchart" viewBox="0 0 900 300"></svg>
   </div>
 
-  <!-- 手機流程 -->
+  <!-- 手機流程 - 已優化置中 -->
   <div class="mobile-flow">
     <div class="flow-card blue">1.1 諮詢輔導</div>
     <div class="flow-card red">1.2 免費可行性評估</div>
@@ -609,12 +669,9 @@ footer {
     </table>
   </div>
 
-  <!-- ★★★ 政府雙軸轉型政策（整合版：AI數位轉型 + SIIR參考）★★★ -->
+  <!-- ★★★ 政府雙軸轉型政策（整合版：AI數位轉型）★★★ -->
   <div class="wrap" style="margin-top: 10px;">
-    <h2>🌟 政府雙軸轉型政策（AI數位轉型 + SIIR參考）</h2>
-    
-    <!-- SIIR 截止提醒 -->
-    
+    <h2>🌟 政府雙軸轉型政策（AI數位轉型）</h2>
 
     <table>
       <thead>
@@ -655,11 +712,11 @@ footer {
               <div class="stage-fund">📌 鼓勵深度研發與低碳智慧設備升級</div>
             </div>
             <!-- 聯絡窗口 -->
-            <div class="contact" style="background:#e6f0ff; border-radius:30px; padding:14px 20px; margin-top:20px;">
+            <div class="contact">
               <span class="policy-tag">#製造業優先</span>
               <span class="policy-tag">#需先完成階段一診斷</span>
               <span class="policy-tag">#可串聯碳盤查</span>
-             
+              
             </div>
           </td>
         </tr>
@@ -685,11 +742,9 @@ footer {
                 <strong>整合型補助</strong> 每案最高 <strong>2,000萬元</strong>（企業自籌50%）
               </div>
             </div>
-            <div class="contact" style="background:#e6f0ff; border-radius:30px; padding:14px 20px; margin-top:20px;">
-             
-            </div>
+            
           </td>
-      
+        </tr>
       </tbody>
     </table>
 
@@ -701,7 +756,7 @@ footer {
       <span class="policy-tag">勞動部 人才培訓</span>
     </div>
 
-    <!-- 進度意象 (保留) -->
+    <!-- 進度意象 -->
     <div style="margin: 20px 0 10px; max-width:600px; margin-left:auto; margin-right:auto;">
       <div style="display: flex; justify-content: space-between; font-weight: 600;">
         <span>AI診斷</span><span>應用導入</span><span>研發轉型</span>
