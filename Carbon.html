@@ -12,6 +12,8 @@
 :root{
   --home-main: #0b6bff;
   --home-sub:  #00c6ff;
+  --industry-main: #10b981; 
+  --industry-sub: #059669;
 }
 
 html, body {
@@ -34,7 +36,34 @@ body {
 main { flex: 1; width: 100%; box-sizing: border-box; }
 
 /* ===============================
-   回首頁按鈕 (鎖定視窗右下)
+   右上角：產業競爭力輔導團按鈕
+================================ */
+.top-right-btn {
+    position: fixed;
+    top: 14px;
+    right: 14px;
+    width: 80px;
+    height: 85px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--industry-main), var(--industry-sub));
+    box-shadow: 0 8px 20px rgba(16,185,129,0.3);
+    z-index: 1001;
+    transition: all 0.3s ease;
+    line-height: 1.2;
+}
+.top-right-btn:hover { transform: scale(1.05); filter: brightness(1.1); }
+.top-right-btn .icon { font-size: 24px; margin-bottom: 2px; }
+.top-right-btn .label { font-size: 11px; text-align: center; }
+
+/* ===============================
+   右下角：回首頁按鈕
 ================================ */
 .float-home-btn {
     position: fixed;
@@ -63,7 +92,7 @@ main { flex: 1; width: 100%; box-sizing: border-box; }
 h1 {
   text-align: center;
   color: #b3ff00;
-  margin: 28px 0 12px;
+  margin: 60px 0 12px; 
   font-size: clamp(2rem, 8vw, 3rem);
   font-weight: 800;
   text-shadow: 4px 4px 8px rgba(0,0,0,.9);
@@ -78,7 +107,7 @@ h1 {
 @keyframes breathe { 0%, 100% { transform: scale(1); opacity: .95; } 50% { transform: scale(1.08); opacity: 1; } }
 
 /* ===============================
-   表格與區塊樣式 (全內容保留)
+   表格與區塊樣式
 ================================ */
 #explanation, .wrap { width: 94vw; max-width: 1200px; margin: 32px auto; box-sizing: border-box; }
 #explanation { padding: 32px; background: rgba(255,255,255,.9); border-radius: 18px; line-height: 2.1; box-shadow: 0 18px 40px rgba(0,0,0,0.18); font-size: 1.3rem; }
@@ -90,14 +119,11 @@ td { vertical-align: top; padding: 22px; border-bottom: 1px solid rgba(0,0,0,.1)
 td.item-col { width: 30%; font-size: 20px; font-weight: 800; color: #0b5ed7; background: rgba(255,255,255,0.5); }
 td.content-col { width: 70%; line-height: 2.0; font-size: 18px; }
 
-/* 政策卡片與標籤 */
 .stage-card { background: white; border-radius: 16px; padding: 16px 20px; margin-bottom: 18px; border: 1px solid rgba(11,107,255,0.2); }
 .stage-title { font-size: 1.25rem; font-weight: 800; color: #0b6bff; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
 .stage-detail { font-size: 1.1rem; padding-left: 18px; border-left: 3px solid #00c6ff; margin: 12px 0; }
 .stage-fund { background: #f0f7ff; padding: 12px 16px; border-radius: 14px; font-weight: 600; color: #084fbe; }
-.policy-tag { display: inline-block; background: #0b6bff; color: white; padding: 4px 16px; border-radius: 40px; font-size: 1rem; margin-right: 12px; margin-bottom: 6px; }
 
-/* 進度條文字改白色 */
 .ai-stage-labels { display: flex; justify-content: space-between; font-weight: 800; color: #ffffff; text-shadow: 1px 1px 3px rgba(0,0,0,0.8); margin-bottom: 4px; }
 .progress-bar { height: 18px; background: #e5e7eb; border-radius: 999px; overflow: hidden; margin: 10px 0; }
 .progress-fill { height: 100%; background: linear-gradient(90deg, #0b6bff, #22c55e); }
@@ -115,13 +141,24 @@ td.content-col { width: 70%; line-height: 2.0; font-size: 18px; }
   tbody tr { margin-bottom: 24px; background: white; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); overflow: hidden; }
   td.item-col { background: linear-gradient(135deg, #0b6bff, #084fbe); color: white !important; font-size: 1.3rem !important; padding: 18px; text-align: center; }
   td.content-col { padding: 22px; font-size: 17px; }
-  td img { width: 100px !important; margin: 6px !important; }
+}
+
+@media (max-width: 600px) {
+    .top-right-btn { width: 68px; height: 75px; top: 10px; right: 10px; border-radius: 15px; }
+    .top-right-btn .icon { font-size: 20px; }
+    .top-right-btn .label { font-size: 9px; }
+    h1 { margin-top: 80px; } 
 }
 
 .blue { background: #1f77b4; } .red { background: #d62728; } .orange { background: #ff7f0e; } .green { background: #2ca02c; }
 </style>
 </head>
 <body>
+
+<a href="https://udmindustries.netlify.app/" class="top-right-btn">
+    <span class="icon">🏆</span>
+    <span class="label">產業競爭力<br>輔導團</span>
+</a>
 
 <img src="https://pub-531c96b02ed745e0bbfd0e96bfde8518.r2.dev/UDM%20New%20Logo.jpg" class="breathing-logo" alt="Logo">
 
@@ -244,7 +281,6 @@ td.content-col { width: 70%; line-height: 2.0; font-size: 18px; }
 
 <script src="https://d3js.org/d3.v7.min.js"></script>
 <script>
-// 控制手機版顯示
 function checkMobile() {
   const mFlow = document.querySelector('.mobile-flow');
   if(window.innerWidth <= 900) mFlow.style.display = 'flex';
@@ -252,9 +288,7 @@ function checkMobile() {
 }
 window.onresize = checkMobile; checkMobile();
 
-// D3 繪圖邏輯 (恢復連線與箭頭)
 const svg = d3.select("#flowchart");
-// 1. 定義箭頭標記
 svg.append("defs").append("marker")
   .attr("id","arrow").attr("viewBox","0 -5 10 10")
   .attr("refX",10).attr("refY",0)
@@ -269,7 +303,6 @@ const nodes = [
   {x:620, y:210, text:"1.4 補助碳盤查", color:"#2ca02c"}
 ];
 
-// 2. 繪製連線
 const links = [[nodes[0], nodes[1]], [nodes[1], nodes[2]], [nodes[1], nodes[3]]];
 links.forEach(l => {
   svg.append("line")
@@ -279,7 +312,6 @@ links.forEach(l => {
     .attr("marker-end","url(#arrow)");
 });
 
-// 3. 繪製節點
 nodes.forEach(n => {
   svg.append("rect").attr("x", n.x-90).attr("y", n.y-30).attr("width", 180).attr("height", 60).attr("rx", 12).attr("fill", n.color);
   svg.append("text").attr("x", n.x).attr("y", n.y+6).attr("text-anchor","middle").attr("fill","#fff").attr("font-size","16px").attr("font-weight","bold").text(n.text);
